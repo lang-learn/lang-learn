@@ -1,12 +1,12 @@
-<section id="flashcard-quizzer">
+<section id="flashcard-quizzer" class="container">
   <div id="card" class="col-10 col-offset-1 bg-primary">
     <header class="text-center">
       {{firstUpper bLang}} <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> {{firstUpper tLang}}
     </header>
 
-    <h1 id="main-word" class="text-center">{{firstUpper mainWord}}</h1>
+    <h1 id="main-word" class="card-word text-center">{{firstUpper mainWord}}</h1>
 
-    <h1 id="translated-word" class="text-center hidden">{{firstUpper translatedWord}}</h1>
+    <h1 id="translated-word" class="card-word text-center hidden">{{firstUpper translatedWord}}</h1>
 
     <div id="controls" class="btn-group col-12" role="group" aria-label="...">
       {{! flip card }}

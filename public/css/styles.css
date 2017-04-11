@@ -50,3 +50,8 @@ footer {
   bottom: 5px;
   right: 5px;
 }
+
+/* Quizzer card */
+#card {
+    margin-top: 50px;
+}
