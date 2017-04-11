@@ -1,4 +1,5 @@
-const translate = require('google-translate-api');
+const apiKey = "AIzaSyD9OreuZNrNyDAqQBeKgzsDfLPA18IPdDc";
+const gTranslate = require('google-translate')(apiKey);
 var langs = {
     'auto': 'Automatic',
     'af': 'Afrikaans',
@@ -106,75 +107,57 @@ var langs = {
     'zu': 'Zulu'
 };
 
+
 const constructorMethod = (app) => {
     app.get("/", (req, res) => {
         res.render('layouts/index');
     });
-/*
-    app.get("/:baseLang/:targetLang/:word", (req, res) => {
-        //Note to Josh:
-        //pass in base and target to make the link to the next one
-        let bLang = undefined;
+
+    app.get("/learn/:word", (req, res) => {
+        let mainWord = req.params.word;
+
+        gTranslate.translate(mainWord, 'es', (err, apiRes) => {
+            if(err){
+                res.sendStatus(500);
+                console.error(err);
+            }else{
+                res.render('layouts/quizzer', {
+                    lang1: 'english',
+                    lang2: 'spanish',
+                    mainWord: mainWord,
+                    translatedWord: apiRes.translatedText
+                });
+            }
+        });
+    });
+
+    app.get("/translate/:tLangCode/:word", (req, res) => {
         let tLang = undefined;
-        let baseLang = req.params.baseLang;
-        if(baseLang in langs){
-            bLang = langs[baseLang];
-        }
-        let targetLang = req.params.targetLang;
-        if(targetLang in langs){
-            tLang = langs[targetLang];
+        let tLangCode = req.params.tLangCode;
+        if(tLangCode in langs){
+            tLang = langs[tLangCode];
         }
 
         let mainWord = req.params.word;
 
-        if(bLang && tLang){
-            translate(mainWord, {from: bLang, to: tLang}).then(apiRes => {
-                res.render('layouts/quizzer', {
-                    lang1: bLang,
-                    lang2: tLang,
-                    mainWord: mainWord,
-                    translatedWord: apiRes.text
-                });
-            }).catch(err => {
-                res.sendStatus(500);
-                console.error(err);
+        if(tLang){
+            gTranslate.translate(mainWord, tLangCode, (err, apiRes) => {
+                if(err){
+                    res.sendStatus(500);
+                    console.error(err);
+                }else{
+                    res.render('layouts/quizzer', {
+                        lang1: 'english',
+                        lang2: tLang,
+                        mainWord: mainWord,
+                        translatedWord: apiRes.translatedText
+                    });
+                }
             });
         }else{
             res.sendStatus(500);
             console.error("Target or base language code not recognized");
         }
-    })
-    */
-    app.get("/learn/:word", (req, res) => {
-        let mainWord = req.params.word;
-
-        translate(mainWord, {to: 'es'}).then(apiRes => {
-            res.render('layouts/quizzer', {
-                lang1: 'english',
-                lang2: 'spanish',
-                mainWord: mainWord,
-                translatedWord: apiRes.text
-            });
-        }).catch(err => {
-            res.sendStatus(500);
-            console.error(err);
-        });
-    })
-
-    app.get("/:word", (req, res) => {
-        let mainWord = req.params.word;
-
-        translate(mainWord, {to: 'es'}).then(apiRes => {
-            res.render('layouts/quizzer', {
-                lang1: 'english',
-                lang2: 'spanish',
-                mainWord: mainWord,
-                translatedWord: apiRes.text
-            });
-        }).catch(err => {
-            res.sendStatus(500);
-            console.error(err);
-        });
     })
 
     app.use("*", (req, res) => {
