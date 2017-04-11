@@ -132,32 +132,22 @@ const constructorMethod = (app) => {
     });
 
     app.get("/translate/:tLangCode/:word", (req, res) => {
-        let tLang = undefined;
         let tLangCode = req.params.tLangCode;
-        if(tLangCode in langs){
-            tLang = langs[tLangCode];
-        }
-
         let mainWord = req.params.word;
 
-        if(tLang){
-            gTranslate.translate(mainWord, tLangCode, (err, apiRes) => {
-                if(err){
-                    res.sendStatus(500);
-                    console.error(err);
-                }else{
-                    res.render('layouts/quizzer', {
-                        lang1: 'english',
-                        lang2: tLang,
-                        mainWord: mainWord,
-                        translatedWord: apiRes.translatedText
-                    });
-                }
-            });
-        }else{
-            res.sendStatus(500);
-            console.error("Target or base language code not recognized");
-        }
+        gTranslate.translate(mainWord, tLangCode, (err, apiRes) => {
+            if(err){
+                res.sendStatus(500);
+                console.error(err);
+            }else{
+                res.render('layouts/quizzer', {
+                    lang1: 'english',
+                    lang2: tLang,
+                    mainWord: mainWord,
+                    translatedWord: apiRes.translatedText
+                });
+            }
+        });
     })
 
     app.use("*", (req, res) => {
