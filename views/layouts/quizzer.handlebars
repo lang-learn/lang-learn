@@ -1,7 +1,7 @@
 <section id="flashcard-quizzer">
   <div id="card" class="col-10 col-offset-1 bg-primary">
     <header class="text-center">
-      {{firstUpper lang1}} <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> {{firstUpper lang2}}
+      {{firstUpper bLang}} <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> {{firstUpper tLang}}
     </header>
 
     <h1 id="main-word" class="text-center">{{firstUpper mainWord}}</h1>
@@ -72,7 +72,7 @@
       </button>
 
       {{! next card}}
-      <a id="btn-nextcard" type="button" class="btn btn-default hidden" href="/newWord">
+      <a id="btn-nextcard" type="button" class="btn btn-default hidden" href="/newWord/{{tLangCode}}">
         <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
       </button>
     </div>

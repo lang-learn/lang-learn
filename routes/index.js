@@ -107,47 +107,34 @@ var langs = {
     'zu': 'Zulu'
 };
 
-
 const constructorMethod = (app) => {
     app.get("/", (req, res) => {
         res.render('layouts/index');
     });
 
-    app.get("/learn/:word", (req, res) => {
-        let mainWord = req.params.word;
-
-        gTranslate.translate(mainWord, 'es', (err, apiRes) => {
-            if(err){
-                res.sendStatus(500);
-                console.error(err);
-            }else{
-                res.render('layouts/quizzer', {
-                    lang1: 'english',
-                    lang2: 'spanish',
-                    mainWord: mainWord,
-                    translatedWord: apiRes.translatedText
-                });
-            }
-        });
-    });
-
-    app.get("/translate/:tLangCode/:word", (req, res) => {
+    app.get("/learn/:tLangCode/:word", (req, res) => {
         let tLangCode = req.params.tLangCode;
         let mainWord = req.params.word;
-
         gTranslate.translate(mainWord, tLangCode, (err, apiRes) => {
             if(err){
                 res.sendStatus(500);
                 console.error(err);
             }else{
                 res.render('layouts/quizzer', {
-                    lang1: 'english',
-                    lang2: tLang,
+                    bLang: 'english',
+                    tLang: langs[tLangCode],
+                    tLangCode: tLangCode,
                     mainWord: mainWord,
                     translatedWord: apiRes.translatedText
                 });
             }
         });
+    });
+
+    app.get("/newWord/:tLangCode", (req, res) => {
+        let tLangCode = req.params.tLangCode;
+        let phrase = "Knowledge is power";
+        res.redirect(`/learn/${tLangCode}/${phrase}`);
     })
 
     app.use("*", (req, res) => {
