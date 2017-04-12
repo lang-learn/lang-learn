@@ -1,84 +1,176 @@
-<div class="container">
-    <div class="row">
-        <section id="flashcard-quizzer" class="container">
-        <div id="card" class="col-10 col-offset-1 bg-primary">
-            <header class="text-center">
-            {{firstUpper bLang}} <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> {{firstUpper tLang}}
-            </header>
+<div id="wrapper">
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a href="#">
+                    Available Languages
+                </a>
+            </li>
+            <li>
+                <a href="/learn/ar/hello">Arabic</a>
+            </li>
+            <li>
+                <a href="/learn/zh-tw/hello">Chinese</a>
+            </li>
+            <li>
+                <a href="/learn/fr/hello">French</a>
+            </li>
+            <li>
+                <a href="/learn/de/hello">German</a>
+            </li>
+            <li>
+                <a href="/learn/el/hello">Greek</a>
+            </li>
+            <li>
+                <a href="/learn/it/hello">Italian</a>
+            </li>
+            <li>
+                <a href="/learn/ja/hello">Japanese</a>
+            </li>
+            <li>
+                <a href="/learn/pl/hello">Polish</a>
+            </li>
+            <li>
+                <a href="/learn/pt/hello">Portugese</a>
+            </li>
+            <li>
+                <a href="/learn/es/hello">Spanish</a>
+            </li>
+            <li>
+                <a href="/learn/ru/hello">Russian</a>
+            </li>
 
-            <h1 id="main-word" class="card-word text-center">{{firstUpper mainWord}}</h1>
+        </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
 
-            <h1 id="translated-word" class="card-word text-center hidden">{{firstUpper translatedWord}}</h1>
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+    <!-- Begin Flash Card -->
+        <div class="container">
+            <div class="row">
+                <section id="flashcard-quizzer" class="container">
+                    <div id="card" class="col-10 col-offset-1 bg-primary">
+                        <header class="text-center">
+                        {{firstUpper bLang}} <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> {{firstUpper tLang}}
+                        </header>
 
-            <div id="controls" class="btn-group col-12" role="group" aria-label="...">
-            {{! flip card }}
-            <script>
-            function handleFlipCard(){
-                //show buttons to mark result
-                document.getElementById('btn-correct').classList.remove('hidden');
-                document.getElementById('btn-wrong').classList.remove('hidden');
-                //reverse words
-                let mainWordElem = document.getElementById('main-word');
-                let backWordElem = document.getElementById('translated-word');
-                if(mainWordElem.className.match(/(?:^|\s)hidden(?!\S)/)){
-                    backWordElem.className += ' hidden';
-                    mainWordElem.classList.remove('hidden');
-                }else{
-                    mainWordElem.className += ' hidden';
-                    backWordElem.classList.remove('hidden');
-                }
-            }
-            </script>
-            <button id="btn-flipcard" type="button" class="btn btn-default" onClick="handleFlipCard()">
-                <span class="glyphicon glyphicon glyphicon-repeat" aria-hidden="true"></span>
-            </button>
+                        <h1 id="main-word" class="card-word text-center">{{firstUpper mainWord}}</h1>
 
-            {{! correct }}
-            <script>
-            function handleCorrect(){
-                //show buttons to mark result
-                let cardElem = document.getElementById('card');
-                if(cardElem.className.match(/(?:^|\s)bg-primary(?!\S)/)){
-                    cardElem.classList.remove('bg-primary');
-                }
-                if(cardElem.className.match(/(?:^|\s)bg-warning(?!\S)/)){
-                    cardElem.classList.remove('bg-warning');
-                }
-                cardElem.className += ' bg-success';
-                //allow next card
-                document.getElementById('btn-nextcard').classList.remove('hidden');
-            }
-            </script>
-            <button id="btn-correct" type="button" class="btn btn-default hidden" onClick="handleCorrect()">
-                <span class="glyphicon glyphicon glyphicon-ok" aria-hidden="true"></span>
-            </button>
+                        <h1 id="translated-word" class="card-word text-center hidden">{{firstUpper translatedWord}}</h1>
 
-            {{! incorrect }}
-            <script>
-            function handleIncorrect(){
-                //show buttons to mark result
-                let cardElem = document.getElementById('card');
-                if(cardElem.className.match(/(?:^|\s)bg-primary(?!\S)/)){
-                    cardElem.classList.remove('bg-primary');
-                }
-                if(cardElem.className.match(/(?:^|\s)bg-success(?!\S)/)){
-                    cardElem.classList.remove('bg-success');
-                }
-                cardElem.className += ' bg-warning';
-                //allow next card
-                document.getElementById('btn-nextcard').classList.remove('hidden');
-            }
-            </script>
-            <button id="btn-wrong" type="button" class="btn btn-default hidden" onClick="handleIncorrect()">
-                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-            </button>
+                        <div id="controls" class="btn-group col-12" role="group" aria-label="...">
 
-            {{! next card}}
-            <a id="btn-nextcard" type="button" class="btn btn-default hidden" href="/newWord/{{tLangCode}}">
-                <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
-            </button>
+                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Change Language</a>
+
+                        <button id="btn-flipcard" type="button" class="btn btn-default" onClick="handleFlipCard()">
+                            <span class="glyphicon glyphicon glyphicon-repeat" aria-hidden="true"></span>
+                        </button>
+                        <button id="btn-correct" type="button" class="btn btn-default hidden" onClick="handleCorrect()">
+                            <span class="glyphicon glyphicon glyphicon-ok" aria-hidden="true"></span>
+                        </button>
+                        <button id="btn-wrong" type="button" class="btn btn-default hidden" onClick="handleIncorrect()">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+
+                        {{! next card}}
+                        <a id="btn-nextcard" type="button" class="btn btn-default hidden" href="/newWord/{{tLangCode}}">
+                            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>
+                        </div>
+                </div>
+                </section>
             </div>
         </div>
-        </section>
+        <!-- /#end-flashchard -->
     </div>
+    <div id="phrase-selection">
+        <h3>Phrase Context</h3>
+        <ul>
+            <li><a href="/newWord/greeting/">Greeting</a></li>
+            <li><a href="/newWord/directions/">Ask for directions</a></li>
+            <li><a href="/newWord/emergency/">Emergency</a></li>
+        </ul>
+        <ul>
+            <li><a href="/newWord/atHotel/">At a hotel</a></li>
+            <li><a href="/newWord/atRestraunt/">At a restraunt</a></li>
+            <li><a href="/newWord/atAirport/">At the airport</a></li>
+        </ul>
+        <ul>
+            <li><a href="/newWord/transportation/">Transportation</a></li>
+            <li><a href="/newWord/sightSeeing/">Sightseeing</a></li>
+            <li><a href="/newWord/shoppingAndMoney/">Shopping and Money</a></li>
+        </ul>
+    </div>
+    <!-- /#end-page-content-wrapper -->
 </div>
+<!-- /end-#wrapper -->
+
+
+
+
+    {{! flip card }}
+    <script>
+    function handleFlipCard(){
+        //show buttons to mark result
+        document.getElementById('btn-correct').classList.remove('hidden');
+        document.getElementById('btn-wrong').classList.remove('hidden');
+        //reverse words
+        let mainWordElem = document.getElementById('main-word');
+        let backWordElem = document.getElementById('translated-word');
+        if(mainWordElem.className.match(/(?:^|\s)hidden(?!\S)/)){
+            backWordElem.className += ' hidden';
+            mainWordElem.classList.remove('hidden');
+        }else{
+            mainWordElem.className += ' hidden';
+            backWordElem.classList.remove('hidden');
+        }
+    }
+    </script>
+
+    {{! correct }}
+    <script>
+    function handleCorrect(){
+        //show buttons to mark result
+        let cardElem = document.getElementById('card');
+        if(cardElem.className.match(/(?:^|\s)bg-primary(?!\S)/)){
+            cardElem.classList.remove('bg-primary');
+        }
+        if(cardElem.className.match(/(?:^|\s)bg-warning(?!\S)/)){
+            cardElem.classList.remove('bg-warning');
+        }
+        cardElem.className += ' bg-success';
+        //allow next card
+        document.getElementById('btn-nextcard').classList.remove('hidden');
+    }
+    </script>
+
+    {{! incorrect }}
+    <script>
+    function handleIncorrect(){
+        //show buttons to mark result
+        let cardElem = document.getElementById('card');
+        if(cardElem.className.match(/(?:^|\s)bg-primary(?!\S)/)){
+            cardElem.classList.remove('bg-primary');
+        }
+        if(cardElem.className.match(/(?:^|\s)bg-success(?!\S)/)){
+            cardElem.classList.remove('bg-success');
+        }
+        cardElem.className += ' bg-warning';
+        //allow next card
+        document.getElementById('btn-nextcard').classList.remove('hidden');
+    }
+    </script>
+
+
+<script>
+    
+    var a = document.getElementById('phrase-selection').getElementsByTagName('a'),
+    length = a.length;
+    var loc = window.location['href'].split("/")[4];
+    console.log(window.location['href']);
+
+    for(var i=0; i< length; i++){
+        a[i].href += loc;
+    }
+</script>
