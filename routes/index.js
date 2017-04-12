@@ -1,5 +1,8 @@
 const apiKey = "AIzaSyD9OreuZNrNyDAqQBeKgzsDfLPA18IPdDc";
 const gTranslate = require('google-translate')(apiKey);
+const data = require('../data/phrases');
+const pleasantries = data.pleasantries;
+
 var langs = {
     'auto': 'Automatic',
     'af': 'Afrikaans',
@@ -133,7 +136,7 @@ const constructorMethod = (app) => {
 
     app.get("/newWord/:tLangCode", (req, res) => {
         let tLangCode = req.params.tLangCode;
-        let phrase = "Knowledge is power";
+        let phrase = pleasantries[Math.floor(Math.random() * pleasantries.length)]
         res.redirect(`/learn/${tLangCode}/${phrase}`);
     })
 
