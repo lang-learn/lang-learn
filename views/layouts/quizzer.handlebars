@@ -1,80 +1,84 @@
-<section id="flashcard-quizzer" class="container">
-  <div id="card" class="col-10 col-offset-1 bg-primary">
-    <header class="text-center">
-      {{firstUpper bLang}} <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> {{firstUpper tLang}}
-    </header>
+<div class="container">
+    <div class="row">
+        <section id="flashcard-quizzer" class="container">
+        <div id="card" class="col-10 col-offset-1 bg-primary">
+            <header class="text-center">
+            {{firstUpper bLang}} <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> {{firstUpper tLang}}
+            </header>
 
-    <h1 id="main-word" class="card-word text-center">{{firstUpper mainWord}}</h1>
+            <h1 id="main-word" class="card-word text-center">{{firstUpper mainWord}}</h1>
 
-    <h1 id="translated-word" class="card-word text-center hidden">{{firstUpper translatedWord}}</h1>
+            <h1 id="translated-word" class="card-word text-center hidden">{{firstUpper translatedWord}}</h1>
 
-    <div id="controls" class="btn-group col-12" role="group" aria-label="...">
-      {{! flip card }}
-      <script>
-      function handleFlipCard(){
-          //show buttons to mark result
-          document.getElementById('btn-correct').classList.remove('hidden');
-          document.getElementById('btn-wrong').classList.remove('hidden');
-          //reverse words
-          let mainWordElem = document.getElementById('main-word');
-          let backWordElem = document.getElementById('translated-word');
-          if(mainWordElem.className.match(/(?:^|\s)hidden(?!\S)/)){
-              backWordElem.className += ' hidden';
-              mainWordElem.classList.remove('hidden');
-          }else{
-              mainWordElem.className += ' hidden';
-              backWordElem.classList.remove('hidden');
-          }
-      }
-      </script>
-      <button id="btn-flipcard" type="button" class="btn btn-default" onClick="handleFlipCard()">
-        <span class="glyphicon glyphicon glyphicon-repeat" aria-hidden="true"></span>
-      </button>
+            <div id="controls" class="btn-group col-12" role="group" aria-label="...">
+            {{! flip card }}
+            <script>
+            function handleFlipCard(){
+                //show buttons to mark result
+                document.getElementById('btn-correct').classList.remove('hidden');
+                document.getElementById('btn-wrong').classList.remove('hidden');
+                //reverse words
+                let mainWordElem = document.getElementById('main-word');
+                let backWordElem = document.getElementById('translated-word');
+                if(mainWordElem.className.match(/(?:^|\s)hidden(?!\S)/)){
+                    backWordElem.className += ' hidden';
+                    mainWordElem.classList.remove('hidden');
+                }else{
+                    mainWordElem.className += ' hidden';
+                    backWordElem.classList.remove('hidden');
+                }
+            }
+            </script>
+            <button id="btn-flipcard" type="button" class="btn btn-default" onClick="handleFlipCard()">
+                <span class="glyphicon glyphicon glyphicon-repeat" aria-hidden="true"></span>
+            </button>
 
-      {{! correct }}
-      <script>
-      function handleCorrect(){
-          //show buttons to mark result
-          let cardElem = document.getElementById('card');
-          if(cardElem.className.match(/(?:^|\s)bg-primary(?!\S)/)){
-              cardElem.classList.remove('bg-primary');
-          }
-          if(cardElem.className.match(/(?:^|\s)bg-warning(?!\S)/)){
-              cardElem.classList.remove('bg-warning');
-          }
-          cardElem.className += ' bg-success';
-          //allow next card
-          document.getElementById('btn-nextcard').classList.remove('hidden');
-      }
-      </script>
-      <button id="btn-correct" type="button" class="btn btn-default hidden" onClick="handleCorrect()">
-        <span class="glyphicon glyphicon glyphicon-ok" aria-hidden="true"></span>
-      </button>
+            {{! correct }}
+            <script>
+            function handleCorrect(){
+                //show buttons to mark result
+                let cardElem = document.getElementById('card');
+                if(cardElem.className.match(/(?:^|\s)bg-primary(?!\S)/)){
+                    cardElem.classList.remove('bg-primary');
+                }
+                if(cardElem.className.match(/(?:^|\s)bg-warning(?!\S)/)){
+                    cardElem.classList.remove('bg-warning');
+                }
+                cardElem.className += ' bg-success';
+                //allow next card
+                document.getElementById('btn-nextcard').classList.remove('hidden');
+            }
+            </script>
+            <button id="btn-correct" type="button" class="btn btn-default hidden" onClick="handleCorrect()">
+                <span class="glyphicon glyphicon glyphicon-ok" aria-hidden="true"></span>
+            </button>
 
-      {{! incorrect }}
-      <script>
-      function handleIncorrect(){
-          //show buttons to mark result
-          let cardElem = document.getElementById('card');
-          if(cardElem.className.match(/(?:^|\s)bg-primary(?!\S)/)){
-              cardElem.classList.remove('bg-primary');
-          }
-          if(cardElem.className.match(/(?:^|\s)bg-success(?!\S)/)){
-              cardElem.classList.remove('bg-success');
-          }
-          cardElem.className += ' bg-warning';
-          //allow next card
-          document.getElementById('btn-nextcard').classList.remove('hidden');
-      }
-      </script>
-      <button id="btn-wrong" type="button" class="btn btn-default hidden" onClick="handleIncorrect()">
-        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-      </button>
+            {{! incorrect }}
+            <script>
+            function handleIncorrect(){
+                //show buttons to mark result
+                let cardElem = document.getElementById('card');
+                if(cardElem.className.match(/(?:^|\s)bg-primary(?!\S)/)){
+                    cardElem.classList.remove('bg-primary');
+                }
+                if(cardElem.className.match(/(?:^|\s)bg-success(?!\S)/)){
+                    cardElem.classList.remove('bg-success');
+                }
+                cardElem.className += ' bg-warning';
+                //allow next card
+                document.getElementById('btn-nextcard').classList.remove('hidden');
+            }
+            </script>
+            <button id="btn-wrong" type="button" class="btn btn-default hidden" onClick="handleIncorrect()">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            </button>
 
-      {{! next card}}
-      <a id="btn-nextcard" type="button" class="btn btn-default hidden" href="/newWord/{{tLangCode}}">
-        <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
-      </button>
+            {{! next card}}
+            <a id="btn-nextcard" type="button" class="btn btn-default hidden" href="/newWord/{{tLangCode}}">
+                <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+            </button>
+            </div>
+        </div>
+        </section>
     </div>
-  </div>
-</section>
+</div>
