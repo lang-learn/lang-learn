@@ -37,6 +37,9 @@ const constructorMethod = (app) => {
     let tLangCode = req.params.tLangCode;
     let phraseType = req.params.phraseType;
     let phraseList = data[phraseType];
+    if(!phraseList){
+        res.sendStatus(404);
+    }
     let randomIndex = Math.floor(Math.random()*phraseList.length);
     let phrase = phraseList[randomIndex];
     res.redirect(`/learn/${tLangCode}/${phrase}`);
