@@ -39,37 +39,6 @@ const constructorMethod = (app) => {
     let phraseList = data[phraseType];
     let randomIndex = Math.floor(Math.random()*phraseList.length);
     let phrase = phraseList[randomIndex];
-
-
-    switch(phraseType) {
-        case "greeting":
-            phrase = data.greeting[Math.floor(Math.random() * data.greeting.length)]
-            break;
-        case "directions":
-            phrase = data.directions[Math.floor(Math.random() * data.directions.length)]
-            break;
-        case "emergency":
-            phrase = data.emergency[Math.floor(Math.random() * data.emergency.length)]
-            break;
-        case "atHotel":
-            phrase = data.atHotel[Math.floor(Math.random() * data.atHotel.length)]
-            break;
-        case "atRestaurant":
-            phrase = data.atRestaurant[Math.floor(Math.random() * data.atRestaurant.length)]
-            break;
-        case "atAirport":
-            phrase = data.atAirport[Math.floor(Math.random() * data.atAirport.length)]
-            break;
-        case "transportation":
-            phrase = data.transportation[Math.floor(Math.random() * data.transportation.length)]
-            break;
-        case "sightSeeing":
-            phrase = data.sightSeeing[Math.floor(Math.random() * data.sightSeeing.length)]
-            break;
-        case "shoppingAndMoney":
-            phrase = data.shoppingAndMoney[Math.floor(Math.random() * data.shoppingAndMoney.length)]
-            break;
-    }
     res.redirect(`/learn/${tLangCode}/${phrase}`);
 });
 
