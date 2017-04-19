@@ -68,3 +68,14 @@ footer {
    list-style: none;
    padding: 9px;
 }
+
+.btn-phrase {
+    width: 150px
+}
+
+#prompter {
+    margin-top: 15px;
+    text-align: center;
+    width: 50%;
+    font-size: 3em;
+}

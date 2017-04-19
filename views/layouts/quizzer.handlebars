@@ -79,6 +79,7 @@
                             <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>
                         </div>
                 </div>
+                    <center><div class="hidden" id="prompter">I am the prompter</div></center>
                 </section>
             </div>
         </div>
@@ -87,25 +88,27 @@
     <div id="phrase-selection">
         <h3>Phrase Context</h3>
         <ul>
-            <li><a href="/newWord/greeting/">Greeting</a></li>
-            <li><a href="/newWord/directions/">Ask for directions</a></li>
-            <li><a href="/newWord/emergency/">Emergency</a></li>
+            <li><a class="btn btn-success btn-phrase" href="/newWord/greeting/">Greeting</a></li>
+            <li><a class="btn btn-success btn-phrase" href="/newWord/directions/">Ask for directions</a></li>
+            <li><a class="btn btn-success btn-phrase" href="/newWord/emergency/">Emergency</a></li>
         </ul>
         <ul>
-            <li><a href="/newWord/atHotel/">At a hotel</a></li>
-            <li><a href="/newWord/atRestaurant/">At a restraunt</a></li>
-            <li><a href="/newWord/atAirport/">At the airport</a></li>
+            <li><a class="btn btn-success btn-phrase" href="/newWord/atHotel/">At a hotel</a></li>
+            <li><a class="btn btn-success btn-phrase" href="/newWord/atRestaurant/">At a restraunt</a></li>
+            <li><a class="btn btn-success btn-phrase" href="/newWord/atAirport/">At the airport</a></li>
         </ul>
         <ul>
-            <li><a href="/newWord/transportation/">Transportation</a></li>
-            <li><a href="/newWord/sightSeeing/">Sightseeing</a></li>
-            <li><a href="/newWord/shoppingAndMoney/">Shopping and Money</a></li>
+            <li><a class="btn btn-success btn-phrase" href="/newWord/transportation/">Transportation</a></li>
+            <li><a class="btn btn-success btn-phrase" href="/newWord/sightSeeing/">Sightseeing</a></li>
+            <li><a class="btn btn-success btn-phrase" href="/newWord/shoppingAndMoney/">Shopping and Money</a></li>
         </ul>
     </div>
     <!-- /#end-page-content-wrapper -->
 </div>
 <!-- /end-#wrapper -->
 
+
+    {{! animate next card }}
 
 
 
@@ -140,8 +143,14 @@
             cardElem.classList.remove('bg-warning');
         }
         cardElem.className += ' bg-success';
+
         //allow next card
         document.getElementById('btn-nextcard').classList.remove('hidden');
+
+        let prompt = document.getElementById('prompter');
+        prompt.innerHTML = "Great Job!";
+        prompt.classList += ' bg-success';
+        prompt.classList.remove("hidden");
     }
     </script>
 
@@ -159,6 +168,11 @@
         cardElem.className += ' bg-warning';
         //allow next card
         document.getElementById('btn-nextcard').classList.remove('hidden');
+        
+        let prompt = document.getElementById('prompter');
+        prompt.innerHTML = "Sorry try again!";
+        prompt.classList += ' bg-danger';
+        prompt.classList.remove("hidden");
     }
     </script>
 
