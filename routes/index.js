@@ -9,18 +9,42 @@ const constructorMethod = (app) => {
     });
 
     app.get("/learn/:tLangCode/:word", (req, res) => {
+        let bLangCode = 'en';
         let tLangCode = req.params.tLangCode;
-        let mainWord = req.params.word;
-        gTranslate.translate(mainWord, tLangCode, (err, apiRes) => {
+        let phrase = req.params.word;
+        gTranslate.translate(phrase, tLangCode, (err, apiRes) => {
             if(err){
                 res.sendStatus(500);
                 console.error(err);
             }else{
                 res.render('layouts/quizzer', {
-                    bLang: 'english',
-                    tLang: langs[tLangCode],
+                    bLangCode: bLangCode,
                     tLangCode: tLangCode,
-                    mainWord: mainWord,
+                    bLang: langs[bLangCode],
+                    tLang: langs[tLangCode],
+                    mainWord: phrase,
+                    langList: langs,
+                    translatedWord: apiRes.translatedText
+                });
+            }
+        });
+    });
+    app.get("/learn/:bLangCode/:tLangCode/:word", (req, res) => {
+        let bLangCode = req.params.bLangCode;
+        let tLangCode = req.params.tLangCode;
+        let phrase = req.params.word;
+        gTranslate.translate(phrase, tLangCode, (err, apiRes) => {
+            if(err){
+                res.sendStatus(500);
+                console.error(err);
+            }else{
+                res.render('layouts/quizzer', {
+                    bLangCode: bLangCode,
+                    tLangCode: tLangCode,
+                    bLang: langs[bLangCode],
+                    tLang: langs[tLangCode],
+                    mainWord: phrase,
+                    langList: langs,
                     translatedWord: apiRes.translatedText
                 });
             }

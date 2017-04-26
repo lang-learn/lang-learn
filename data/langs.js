@@ -1,5 +1,4 @@
 module.exports = {
-    'auto': 'Automatic',
     'af': 'Afrikaans',
     'sq': 'Albanian',
     'ar': 'Arabic',

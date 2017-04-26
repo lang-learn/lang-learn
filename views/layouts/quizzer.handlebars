@@ -7,40 +7,11 @@
                     Available Languages
                 </a>
             </li>
+            {{#each langList}}
             <li>
-                <a href="/learn/ar/hello">Arabic</a>
+                <a href="/learn/{{@key}}">{{this}}</a>
             </li>
-            <li>
-                <a href="/learn/zh-tw/hello">Chinese</a>
-            </li>
-            <li>
-                <a href="/learn/fr/hello">French</a>
-            </li>
-            <li>
-                <a href="/learn/de/hello">German</a>
-            </li>
-            <li>
-                <a href="/learn/el/hello">Greek</a>
-            </li>
-            <li>
-                <a href="/learn/it/hello">Italian</a>
-            </li>
-            <li>
-                <a href="/learn/ja/hello">Japanese</a>
-            </li>
-            <li>
-                <a href="/learn/pl/hello">Polish</a>
-            </li>
-            <li>
-                <a href="/learn/pt/hello">Portugese</a>
-            </li>
-            <li>
-                <a href="/learn/es/hello">Spanish</a>
-            </li>
-            <li>
-                <a href="/learn/ru/hello">Russian</a>
-            </li>
-
+            {{/each}}
         </ul>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -52,9 +23,31 @@
             <div id="language-indicator-box" class="row">
                 <div id="language-indicator" class="col-12">
                     <header class="text-center">
-                        <p>{{firstUpper bLang}}
-                        <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
-                        {{firstUpper tLang}}</p>
+                        <p>
+                            <select class="lang-select text-center"
+                                onChange="console.log('hey');">
+                                {{#each langList}}
+                                <option
+                                  value="{{@key}}"
+                                  {{checkSelect @key ../bLangCode}}>
+                                    {{this}}
+                                </option>
+                                {{/each}}
+                            </select>
+                            <span
+                              class="glyphicon glyphicon-arrow-right"
+                              aria-hidden="true">
+                            </span>
+                            <select class="lang-select">
+                                {{#each langList}}
+                                <option
+                                  value="{{@key}}"
+                                  {{checkSelect @key ../tLangCode}}>
+                                    {{this}}
+                                </option>
+                                {{/each}}
+                            </select>
+                        </p>
                     </header>
                 </div>
             </div>
@@ -62,11 +55,11 @@
                 <div id="phrase" class="col-12">
                     {{! main word }}
                     <h1 id="main-word" class="text-center">
-                        {{firstUpper mainWord}}
+                        &ldquo;{{firstUpper mainWord}}&rdquo;
                     </h1>
                     {{! translated word }}
                     <h1 id="translated-word" class="text-center hidden">
-                        {{firstUpper translatedWord}}
+                        &ldquo;{{firstUpper translatedWord}}&rdquo;
                     </h1>
                 </div>
             </div>

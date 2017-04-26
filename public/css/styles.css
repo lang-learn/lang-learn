@@ -99,6 +99,23 @@ footer {
     height: 75px;
 }
 
+.lang-select{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid white;
+    text-align-last:center;
+}
+.lang-select:hover{
+    background: lightblue;
+}
+.lang-select:active{
+    background: #337ab7;
+    color: white;
+}
+
 .flashcard-button{
     height: 75px;
     padding: 10px;
