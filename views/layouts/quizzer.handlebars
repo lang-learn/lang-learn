@@ -25,7 +25,7 @@
                     <header class="text-center">
                         <p>
                             <select class="lang-select text-center"
-                                onChange="console.log('hey');">
+                                onChange="window.location.href='/newWord/' + this.options[this.selectedIndex].value + '/{{tLangCode}}'">
                                 {{#each langList}}
                                 <option
                                   value="{{@key}}"
@@ -38,7 +38,8 @@
                               class="glyphicon glyphicon-arrow-right"
                               aria-hidden="true">
                             </span>
-                            <select class="lang-select">
+                            <select class="lang-select"
+                             onChange="window.location.href='/learn/{{bLangCode}}/' + this.options[this.selectedIndex].value + '/{{mainWord}}'">
                                 {{#each langList}}
                                 <option
                                   value="{{@key}}"
@@ -89,7 +90,7 @@
                 <div id="next-button" type="button"
                  class="flashcard-button col-xs-12 text-center hidden"
                  data-balloon="Next Card!" data-balloon-pos="down"
-                 onClick="window.location.href='/newWord/{{tLangCode}}'">
+                 onClick="window.location.href='/newWord/{{bLangCode}}/{{tLangCode}}'">
                     <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
                 </div>
             </div>

@@ -56,19 +56,38 @@ const constructorMethod = (app) => {
         let phrase = data.allInquiries[Math.floor(Math.random() * data.allInquiries.length)]
         res.redirect(`/learn/${tLangCode}/${phrase}`);
     })
+    app.get("/newWord/:bLangCode/:tLangCode", (req, res) => {
+        let bLangCode = req.params.bLangCode;
+        let tLangCode = req.params.tLangCode;
+        let phrase = data.allInquiries[Math.floor(Math.random() * data.allInquiries.length)]
+        if(bLangCode != 'en'){
+            //all source phrases are english, translate to base if not english
+            gTranslate.translate(phrase, bLangCode, (err, apiRes) => {
+                if(err){
+                    res.sendStatus(500);
+                    console.error(err);
+                }else{
+                    res.redirect(`/learn/${bLangCode}/${tLangCode}/${apiRes.translatedText}`);
+                }
+            })
+        }else{
+            res.redirect(`/learn/${bLangCode}/${tLangCode}/${phrase}`);
+        }
+    })
 
+/*
     app.get("/newWord/:phraseType/:tLangCode", (req, res) => {
-    let tLangCode = req.params.tLangCode;
-    let phraseType = req.params.phraseType;
-    let phraseList = data[phraseType];
-    if(!phraseList){
-        res.sendStatus(404);
-    }
-    let randomIndex = Math.floor(Math.random()*phraseList.length);
-    let phrase = phraseList[randomIndex];
-    res.redirect(`/learn/${tLangCode}/${phrase}`);
-});
-
+        let tLangCode = req.params.tLangCode;
+        let phraseType = req.params.phraseType;
+        let phraseList = data[phraseType];
+        if(!phraseList){
+            res.sendStatus(404);
+        }
+        let randomIndex = Math.floor(Math.random()*phraseList.length);
+        let phrase = phraseList[randomIndex];
+        res.redirect(`/learn/${tLangCode}/${phrase}`);
+    });
+*/
     app.use("*", (req, res) => {
         res.sendStatus(404);
     });
