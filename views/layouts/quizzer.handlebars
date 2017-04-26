@@ -64,18 +64,18 @@
 
                         <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Change Language</a>
 
-                        <button id="btn-flipcard" type="button" class="btn btn-default" onClick="handleFlipCard()">
+                        <button id="btn-flipcard" type="button" class="btn btn-default" onClick="handleFlipCard()" title="Flip Card">
                             <span class="glyphicon glyphicon glyphicon-share-alt" aria-hidden="true"></span>
                         </button>
-                        <button id="btn-correct" type="button" class="btn btn-default hidden" onClick="handleCorrect()">
+                        <button id="btn-correct" type="button" class="btn btn-default hidden" onClick="handleCorrect()" title="Correct">
                             <span class="glyphicon glyphicon glyphicon-ok" aria-hidden="true"></span>
                         </button>
-                        <button id="btn-wrong" type="button" class="btn btn-default hidden" onClick="handleIncorrect()">
+                        <button id="btn-wrong" type="button" class="btn btn-default hidden" onClick="handleIncorrect()" title="Incorrect">
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         </button>
 
                         {{! next card}}
-                        <a id="btn-nextcard" type="button" class="btn btn-default hidden" href="/newWord/{{tLangCode}}">
+                        <a id="btn-nextcard" type="button" class="btn btn-default hidden" href="/newWord/{{tLangCode}}" title="Next Card">
                             <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>
                         </div>
                 </div>
