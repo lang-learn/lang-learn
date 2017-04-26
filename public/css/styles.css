@@ -109,11 +109,12 @@ footer {
     text-align-last:center;
 }
 .lang-select:hover{
-    background: lightblue;
+    background: lightgrey;
+    color: black;
 }
 .lang-select:active{
-    background: #337ab7;
-    color: white;
+    background: lightgrey;
+    color: black;
 }
 
 .flashcard-button{
@@ -122,6 +123,6 @@ footer {
     font-size: 50px;
 }
 .flashcard-button:hover{
-    background-color: lightblue;
-    color: #337ab7;
+    background-color: lightgrey;
+    color: black;
 }
