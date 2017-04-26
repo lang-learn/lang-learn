@@ -70,7 +70,7 @@ footer {
 }
 
 .btn-phrase {
-    width: 150px
+    width: 100%
 }
 
 #prompter {
@@ -79,3 +79,4 @@ footer {
     width: 50%;
     font-size: 3em;
 }
+

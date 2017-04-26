@@ -62,20 +62,20 @@
 
                         <div id="controls" class="btn-group col-12" role="group" aria-label="...">
 
-                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Change Language</a>
+                        <a href="#menu-toggle" class="btn btn-default btn-lg" id="menu-toggle">Change Language</a>
 
-                        <button id="btn-flipcard" type="button" class="btn btn-default" onClick="handleFlipCard()" title="Flip Card">
+                        <button id="btn-flipcard" type="button" class="btn btn-default btn-lg" onClick="handleFlipCard()" title="Flip Card">
                             <span class="glyphicon glyphicon glyphicon-share-alt" aria-hidden="true"></span>
                         </button>
-                        <button id="btn-correct" type="button" class="btn btn-default hidden" onClick="handleCorrect()" title="Correct">
+                        <button id="btn-correct" type="button" class="btn btn-default btn-lg hidden" onClick="handleCorrect()" title="Correct">
                             <span class="glyphicon glyphicon glyphicon-ok" aria-hidden="true"></span>
                         </button>
-                        <button id="btn-wrong" type="button" class="btn btn-default hidden" onClick="handleIncorrect()" title="Incorrect">
+                        <button id="btn-wrong" type="button" class="btn btn-default btn-lg hidden" onClick="handleIncorrect()" title="Incorrect">
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         </button>
 
                         {{! next card}}
-                        <a id="btn-nextcard" type="button" class="btn btn-default hidden" href="/newWord/{{tLangCode}}" title="Next Card">
+                        <a id="btn-nextcard" type="button" class="btn btn-default btn-lg hidden" href="/newWord/{{tLangCode}}" title="Next Card">
                             <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>
                         </div>
                 </div>
@@ -88,19 +88,19 @@
     <div id="phrase-selection">
         <h3>Phrase Context</h3>
         <ul>
-            <li><a class="btn btn-success btn-phrase" href="/newWord/greeting/">Greeting</a></li>
-            <li><a class="btn btn-success btn-phrase" href="/newWord/directions/">Ask for directions</a></li>
-            <li><a class="btn btn-success btn-phrase" href="/newWord/emergency/">Emergency</a></li>
+            <li><a class="btn btn-success btn-phrase btn-lg" href="/newWord/greeting/">Greeting</a></li>
+            <li><a class="btn btn-success btn-phrase btn-lg" href="/newWord/directions/">Ask for directions</a></li>
+            <li><a class="btn btn-success btn-phrase btn-lg" href="/newWord/emergency/">Emergency</a></li>
         </ul>
         <ul>
-            <li><a class="btn btn-success btn-phrase" href="/newWord/atHotel/">At a hotel</a></li>
-            <li><a class="btn btn-success btn-phrase" href="/newWord/atRestaurant/">At a restraunt</a></li>
-            <li><a class="btn btn-success btn-phrase" href="/newWord/atAirport/">At the airport</a></li>
+            <li><a class="btn btn-success btn-phrase btn-lg" href="/newWord/atHotel/">At a hotel</a></li>
+            <li><a class="btn btn-success btn-phrase btn-lg" href="/newWord/atRestaurant/">At a restraunt</a></li>
+            <li><a class="btn btn-success btn-phrase btn-lg" href="/newWord/atAirport/">At the airport</a></li>
         </ul>
         <ul>
-            <li><a class="btn btn-success btn-phrase" href="/newWord/transportation/">Transportation</a></li>
-            <li><a class="btn btn-success btn-phrase" href="/newWord/sightSeeing/">Sightseeing</a></li>
-            <li><a class="btn btn-success btn-phrase" href="/newWord/shoppingAndMoney/">Shopping and Money</a></li>
+            <li><a class="btn btn-success btn-phrase btn-lg" href="/newWord/transportation/">Transportation</a></li>
+            <li><a class="btn btn-success btn-phrase btn-lg" href="/newWord/sightSeeing/">Sightseeing</a></li>
+            <li><a class="btn btn-success btn-phrase btn-lg" href="/newWord/shoppingAndMoney/">Shopping and Money</a></li>
         </ul>
     </div>
     <!-- /#end-page-content-wrapper -->
@@ -165,7 +165,7 @@
         if(cardElem.className.match(/(?:^|\s)bg-success(?!\S)/)){
             cardElem.classList.remove('bg-success');
         }
-        cardElem.className += ' bg-warning';
+        cardElem.className += ' bg-danger';
         //allow next card
         document.getElementById('btn-nextcard').classList.remove('hidden');
         
