@@ -74,24 +74,28 @@
                 {{! flip button }}
                 <div id="flip-button" type="button"
                  class="flashcard-button col-xs-12 text-center"
+                 data-balloon="Flip Card!" data-balloon-pos="down"
                  onClick="handleFlipCard()">
                     <span class="glyphicon glyphicon glyphicon-share-alt" aria-hidden="true"></span>
                 </div>
                 {{! correct button }}
                 <div id="correct-button" type="button"
                  class="flashcard-button col-xs-12 text-center hidden"
+                 data-balloon="Correct!" data-balloon-pos="down"
                  onClick="handleCorrect()">
                     <span class="glyphicon glyphicon glyphicon-ok" aria-hidden="true"></span>
                 </div>
                 {{! incorrect button }}
                 <div id="incorrect-button" type="button"
                  class="flashcard-button col-xs-12 text-center hidden"
+                 data-balloon="Not Quite!" data-balloon-pos="down"
                  onClick="handleIncorrect()">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </div>
                 {{! next button }}
                 <div id="next-button" type="button"
                  class="flashcard-button col-xs-12 text-center hidden"
+                 data-balloon="Next Card!" data-balloon-pos="down"
                  onClick="window.location.href='/newWord/{{tLangCode}}'">
                     <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
                 </div>
