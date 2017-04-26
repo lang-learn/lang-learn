@@ -64,18 +64,18 @@
 
                         <a href="#menu-toggle" class="btn btn-default btn-lg" id="menu-toggle">Change Language</a>
 
-                        <button id="btn-flipcard" type="button" class="btn btn-default btn-lg" onClick="handleFlipCard()" title="Flip Card">
+                        <button id="btn-flipcard" type="button" class="btn btn-default btn-lg" onClick="handleFlipCard()" data-balloon="Flip Card!" data-balloon-pos="down">
                             <span class="glyphicon glyphicon glyphicon-share-alt" aria-hidden="true"></span>
                         </button>
-                        <button id="btn-correct" type="button" class="btn btn-default btn-lg hidden" onClick="handleCorrect()" title="Correct">
+                        <button id="btn-correct" type="button" class="btn btn-default btn-lg hidden" onClick="handleCorrect()" data-balloon="Correct!" data-balloon-pos="down">
                             <span class="glyphicon glyphicon glyphicon-ok" aria-hidden="true"></span>
                         </button>
-                        <button id="btn-wrong" type="button" class="btn btn-default btn-lg hidden" onClick="handleIncorrect()" title="Incorrect">
+                        <button id="btn-wrong" type="button" class="btn btn-default btn-lg hidden" onClick="handleIncorrect()" data-balloon="Not Quite!" data-balloon-pos="down">
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         </button>
 
                         {{! next card}}
-                        <a id="btn-nextcard" type="button" class="btn btn-default btn-lg hidden" href="/newWord/{{tLangCode}}" title="Next Card">
+                        <a id="btn-nextcard" type="button" class="btn btn-default btn-lg hidden" href="/newWord/{{tLangCode}}" data-balloon="Next Card!" data-balloon-pos="down">
                             <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>
                         </div>
                 </div>
