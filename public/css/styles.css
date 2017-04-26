@@ -54,6 +54,7 @@ footer {
 /* Quizzer card */
 #card {
     margin-top: 100px;
+    height: 250px;
 }
 
 #phrase-selection {
@@ -80,3 +81,30 @@ footer {
     font-size: 3em;
 }
 
+
+/* Flashcard */
+#flashcard{
+    margin-top: 100px;
+    height: 250px;
+}
+#language-indicator-box {
+    height: 25px;
+    margin: 10px;
+}
+#phrase-box {
+    height: 90px;
+    margin: 25px;
+}
+#button-box {
+    height: 75px;
+}
+
+.flashcard-button{
+    height: 75px;
+    padding: 10px;
+    font-size: 50px;
+}
+.flashcard-button:hover{
+    background-color: lightblue;
+    color: #337ab7;
+}

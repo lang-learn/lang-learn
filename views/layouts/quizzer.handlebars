@@ -47,44 +47,65 @@
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
-    <!-- Begin Flash Card -->
-        <div class="container">
-            <div class="row">
-                <section id="flashcard-quizzer" class="container">
-                    <div id="card" class="col-10 col-offset-1 bg-primary">
-                        <header class="text-center">
-                        {{firstUpper bLang}} <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> {{firstUpper tLang}}
-                        </header>
-
-                        <h1 id="main-word" class="card-word text-center">{{firstUpper mainWord}}</h1>
-
-                        <h1 id="translated-word" class="card-word text-center hidden">{{firstUpper translatedWord}}</h1>
-
-                        <div id="controls" class="btn-group col-12" role="group" aria-label="...">
-
-                        <a href="#menu-toggle" class="btn btn-default btn-lg" id="menu-toggle">Change Language</a>
-
-                        <button id="btn-flipcard" type="button" class="btn btn-default btn-lg" onClick="handleFlipCard()" title="Flip Card">
-                            <span class="glyphicon glyphicon glyphicon-share-alt" aria-hidden="true"></span>
-                        </button>
-                        <button id="btn-correct" type="button" class="btn btn-default btn-lg hidden" onClick="handleCorrect()" title="Correct">
-                            <span class="glyphicon glyphicon glyphicon-ok" aria-hidden="true"></span>
-                        </button>
-                        <button id="btn-wrong" type="button" class="btn btn-default btn-lg hidden" onClick="handleIncorrect()" title="Incorrect">
-                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                        </button>
-
-                        {{! next card}}
-                        <a id="btn-nextcard" type="button" class="btn btn-default btn-lg hidden" href="/newWord/{{tLangCode}}" title="Next Card">
-                            <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></a>
-                        </div>
+        <!-- Begin Flash Card -->
+        <div id="flashcard" class="container bg-primary">
+            <div id="language-indicator-box" class="row">
+                <div id="language-indicator" class="col-12">
+                    <header class="text-center">
+                        <p>{{firstUpper bLang}}
+                        <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+                        {{firstUpper tLang}}</p>
+                    </header>
                 </div>
-                    <center><div class="hidden" id="prompter">I am the prompter</div></center>
-                </section>
+            </div>
+            <div id="phrase-box" class="row">
+                <div id="phrase" class="col-12">
+                    {{! main word }}
+                    <h1 id="main-word" class="text-center">
+                        {{firstUpper mainWord}}
+                    </h1>
+                    {{! translated word }}
+                    <h1 id="translated-word" class="text-center hidden">
+                        {{firstUpper translatedWord}}
+                    </h1>
+                </div>
+            </div>
+            <div id="button-box" class="row">
+                {{! flip button }}
+                <div id="flip-button" type="button"
+                 class="flashcard-button col-xs-12 text-center"
+                 onClick="handleFlipCard()">
+                    <span class="glyphicon glyphicon glyphicon-share-alt" aria-hidden="true"></span>
+                </div>
+                {{! correct button }}
+                <div id="correct-button" type="button"
+                 class="flashcard-button col-xs-12 text-center hidden"
+                 onClick="handleCorrect()">
+                    <span class="glyphicon glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </div>
+                {{! incorrect button }}
+                <div id="incorrect-button" type="button"
+                 class="flashcard-button col-xs-12 text-center hidden"
+                 onClick="handleIncorrect()">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                </div>
+                {{! next button }}
+                <div id="next-button" type="button"
+                 class="flashcard-button col-xs-12 text-center hidden"
+                 onClick="window.location.href='/newWord/{{tLangCode}}'">
+                    <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+                </div>
             </div>
         </div>
         <!-- /#end-flashchard -->
+        <center><div class="hidden" id="prompter">I am the prompter</div></center>
     </div>
+
+
+    <div id="controls" class="btn-group col-12" role="group" aria-label="...">
+    <a href="#menu-toggle" class="btn btn-default btn-lg" id="menu-toggle">Change Language</a>
+
+
     <div id="phrase-selection">
         <h3>Phrase Context</h3>
         <ul>
@@ -111,13 +132,27 @@
     {{! animate next card }}
 
 
+    {{! change button row }}
+    <script>
+    function changeButtonCount(n){
+        let buttons = document.getElementsByClassName('flashcard-button');
+        for(let i=0;i<buttons.length;i++){
+            let button = buttons[i];
+            button.classList.remove('col-xs-12', 'col-xs-4', 'col-xs-3');
+            button.classList.add(`col-xs-${12/n}`);
+        }
+    }
+    </script>
 
     {{! flip card }}
     <script>
     function handleFlipCard(){
         //show buttons to mark result
-        document.getElementById('btn-correct').classList.remove('hidden');
-        document.getElementById('btn-wrong').classList.remove('hidden');
+        if(document.getElementById('correct-button').classList.contains('hidden')){
+            changeButtonCount(3);
+        }
+        document.getElementById('correct-button').classList.remove('hidden');
+        document.getElementById('incorrect-button').classList.remove('hidden');
         //reverse words
         let mainWordElem = document.getElementById('main-word');
         let backWordElem = document.getElementById('translated-word');
@@ -135,21 +170,20 @@
     <script>
     function handleCorrect(){
         //show buttons to mark result
-        let cardElem = document.getElementById('card');
-        if(cardElem.className.match(/(?:^|\s)bg-primary(?!\S)/)){
-            cardElem.classList.remove('bg-primary');
-        }
-        if(cardElem.className.match(/(?:^|\s)bg-warning(?!\S)/)){
-            cardElem.classList.remove('bg-warning');
-        }
+        let cardElem = document.getElementById('flashcard');
+        //remove other color classes
+        cardElem.classList.remove('bg-primary');
+        cardElem.classList.remove('bg-danger');
+        //add new color
         cardElem.className += ' bg-success';
-
         //allow next card
-        document.getElementById('btn-nextcard').classList.remove('hidden');
+        document.getElementById('next-button').classList.remove('hidden');
+        changeButtonCount(4);
 
         let prompt = document.getElementById('prompter');
         prompt.innerHTML = "Great Job!";
-        prompt.classList += ' bg-success';
+        prompt.classList.remove('bg-danger');
+        prompt.classList.add('bg-success');
         prompt.classList.remove("hidden");
     }
     </script>
@@ -158,20 +192,20 @@
     <script>
     function handleIncorrect(){
         //show buttons to mark result
-        let cardElem = document.getElementById('card');
-        if(cardElem.className.match(/(?:^|\s)bg-primary(?!\S)/)){
-            cardElem.classList.remove('bg-primary');
-        }
-        if(cardElem.className.match(/(?:^|\s)bg-success(?!\S)/)){
-            cardElem.classList.remove('bg-success');
-        }
+        let cardElem = document.getElementById('flashcard');
+        //remove other color classes
+        cardElem.classList.remove('bg-primary');
+        cardElem.classList.remove('bg-success');
+        //add new color
         cardElem.className += ' bg-danger';
         //allow next card
-        document.getElementById('btn-nextcard').classList.remove('hidden');
-        
+        document.getElementById('next-button').classList.remove('hidden');
+        changeButtonCount(4);
+
         let prompt = document.getElementById('prompter');
         prompt.innerHTML = "Sorry try again!";
-        prompt.classList += ' bg-danger';
+        prompt.classList.remove('bg-success');
+        prompt.classList.add('bg-danger');
         prompt.classList.remove("hidden");
     }
     </script>
