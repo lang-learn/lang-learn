@@ -41,6 +41,7 @@ app.set('view engine', 'handlebars');
 configRoutes(app);
 
 //start server
-app.listen(3000, () => {
+const port = 5000
+app.listen(process.env.port || port, () => {
    console.log("Listening on port 3000...")
 });
