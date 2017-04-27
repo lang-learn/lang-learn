@@ -33,6 +33,8 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/views'));
 app.use(express.static(__dirname + '/bower_components'));
 
+
+
 //templating
 app.engine('handlebars', handlebarsInstance.engine);
 app.set('view engine', 'handlebars');
@@ -41,7 +43,7 @@ app.set('view engine', 'handlebars');
 configRoutes(app);
 
 //start server
-const port = 5000
-app.listen(process.env.port || port, () => {
-   console.log("Listening on port 3000...")
+const port = process.env.port || 5000
+app.listen(port, () => {
+   console.log("Listening...")
 });
