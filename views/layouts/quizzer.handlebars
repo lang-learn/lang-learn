@@ -1,6 +1,6 @@
-<div id="wrapper">
-    <!-- Page Content -->
-    <div id="page-content-wrapper">
+<div id="wrapper container">
+    <div class="row">
+        <div class="col-md-12">
         <!-- Begin Flash Card -->
         <div id="flashcard" class="container bg-primary">
             <div id="language-indicator-box" class="row">
@@ -78,29 +78,37 @@
                 </div>
             </div>
         </div>
+        </div>
+    </div>
         <!-- /#end-flashchard -->
-        <center><div class="hidden" id="prompter">I am the prompter</div></center>
-    </div>
 
+        <center><div class="hidden" id="prompter">I am the prompter</div></center>
     <div id="phrase-selection">
-        <h3>Phrase Context</h3>
-        <ul>
-            <li><a class="btn btn-success btn-phrase btn-lg" href="/newWord/greeting/{{bLangCode}}/{{tLangCode}}">Greeting</a></li>
-            <li><a class="btn btn-success btn-phrase btn-lg" href="/newWord/directions/{{bLangCode}}/{{tLangCode}}">Ask for directions</a></li>
-            <li><a class="btn btn-success btn-phrase btn-lg" href="/newWord/emergency/{{bLangCode}}/{{tLangCode}}">Emergency</a></li>
-        </ul>
-        <ul>
-            <li><a class="btn btn-success btn-phrase btn-lg" href="/newWord/atHotel/{{bLangCode}}/{{tLangCode}}">At a hotel</a></li>
-            <li><a class="btn btn-success btn-phrase btn-lg" href="/newWord/atRestaurant/{{bLangCode}}/{{tLangCode}}">At a restraunt</a></li>
-            <li><a class="btn btn-success btn-phrase btn-lg" href="/newWord/atAirport/{{bLangCode}}/{{tLangCode}}">At the airport</a></li>
-        </ul>
-        <ul>
-            <li><a class="btn btn-success btn-phrase btn-lg" href="/newWord/transportation/{{bLangCode}}/{{tLangCode}}">Transportation</a></li>
-            <li><a class="btn btn-success btn-phrase btn-lg" href="/newWord/sightSeeing/{{bLangCode}}/{{tLangCode}}">Sightseeing</a></li>
-            <li><a class="btn btn-success btn-phrase btn-lg" href="/newWord/shoppingAndMoney/{{bLangCode}}/{{tLangCode}}">Shopping and Money</a></li>
-        </ul>
+        <div class="phrase-buttons">
+            <h3>Phrase Context</h3>
+                <div class="col-md-2 col-md-offset-1">
+                    <ul>
+                        <li><a class="btn btn-success btn-phrase btn-lg" href="/newWord/greeting/{{bLangCode}}/{{tLangCode}}">Greeting</a></li>
+                        <li><a class="btn btn-success btn-phrase btn-lg" href="/newWord/directions/{{bLangCode}}/{{tLangCode}}">Ask for directions</a></li>
+                        <li><a class="btn btn-success btn-phrase btn-lg" href="/newWord/emergency/{{bLangCode}}/{{tLangCode}}">Emergency</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 col-md-offset-1">
+                    <ul>
+                        <li><a class="btn btn-success btn-phrase btn-lg" href="/newWord/atHotel/{{bLangCode}}/{{tLangCode}}">At a hotel</a></li>
+                        <li><a class="btn btn-success btn-phrase btn-lg" href="/newWord/atRestaurant/{{bLangCode}}/{{tLangCode}}">At a restraunt</a></li>
+                        <li><a class="btn btn-success btn-phrase btn-lg" href="/newWord/atAirport/{{bLangCode}}/{{tLangCode}}">At the airport</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 col-md-offset-1">
+                    <ul>
+                        <li><a class="btn btn-success btn-phrase btn-lg" href="/newWord/transportation/{{bLangCode}}/{{tLangCode}}">Transportation</a></li>
+                        <li><a class="btn btn-success btn-phrase btn-lg" href="/newWord/sightSeeing/{{bLangCode}}/{{tLangCode}}">Sightseeing</a></li>
+                        <li><a class="btn btn-success btn-phrase btn-lg" href="/newWord/shoppingAndMoney/{{bLangCode}}/{{tLangCode}}">Shopping and Money</a></li>
+                    </ul>
+                </div>
+        </div>
     </div>
-    <!-- /#end-page-content-wrapper -->
 </div>
 <!-- /end-#wrapper -->
 

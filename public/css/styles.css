@@ -71,7 +71,8 @@ footer {
 }
 
 .btn-phrase {
-    width: 100%
+    width: 195px;
+    margin: 5px;
 }
 
 #prompter {
@@ -81,6 +82,10 @@ footer {
     font-size: 3em;
 }
 
+.phrase-buttons {
+    width: 85%;
+    margin: 0 auto;
+}
 
 /* Flashcard */
 #flashcard{
